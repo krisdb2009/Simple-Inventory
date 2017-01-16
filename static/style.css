@@ -1,0 +1,293 @@
+/* //Cedar Point//Dylan Bickerstaff//2016//CFIT Inventory */
+* {
+font-family:arial;
+-webkit-user-select:none;
+-khtml-user-select:none;
+-moz-user-select:none;
+-o-user-select:none;
+-ms-user-select:none;
+user-select:none;
+cursor:default;
+outline:none;
+}
+body {
+background:url('bg.png');
+background-color:#eee;
+margin:0;
+}
+body::after {
+content:"";
+background:url('cfit.png');
+background-size:100% 100%;
+width:100px;
+height:50px;
+bottom:5px;
+right:5px;
+position:absolute;
+z-index:5;
+opacity:.4;
+pointer-events:none;
+}
+.button {
+display:inline-block;
+border:none;
+text-decoration:none;
+text-align:center;
+box-shadow:inset 0px 0px 10px #aaaaaa;
+background:linear-gradient(to bottom, #ffffff 14%,#efefef 34%,#dddddd 100%);
+color:black;
+border-radius:10px;
+}
+.button:active {
+box-shadow:inset 0px 0px 10px gray;
+background:linear-gradient(to bottom, #c1c1c1 0%,#e0e0e0 100%);
+}
+.textborder {
+text-shadow:1px 1px 0px white, 1px -1px 0px white, -1px -1px 0px white, -1px 1px 0px white;
+}
+.index .cat {
+position:absolute;
+top:0px;
+left:0px;
+font-size:24px;
+width:300px;
+height:30px;
+text-align:center;
+}
+.index .lb {
+width:300px;
+height:calc(100% - 160px);
+position:absolute;
+left:5px;
+top:30px;
+overflow-y:auto;
+overflow-x:hidden;
+border:1px solid lightgray;
+}
+.index .lb::-webkit-scrollbar { 
+width: 0 !important
+}
+.index .lb .lbe .i, .index .lb .lbe .c {
+display:inline-block;
+height:30px;
+line-height:30px;
+font-size:16px;
+border-bottom:1px solid lightgray;
+overflow:hidden;
+color:black;
+}
+.index .lb a:active * {
+background-color:lightgray;
+color:white !important;
+text-shadow:none;
+}
+.index .lb .lbe.ttl {
+font-weight:bold;
+}
+.index .lb .lbe .i {
+padding-left:5px;
+width:calc(75% - 5px);
+text-align:left;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
+.index .lb .lbe .c {
+width:calc(25% - 6px);
+padding-right:5px;
+border-left:1px solid lightgray;
+text-align:right;
+}
+.index .bl {
+position:absolute;
+bottom:0px;
+left:5px;
+width:302px;
+}
+.index .cbu {
+width:148px;
+height:55px;
+line-height:50px;
+margin-bottom:5px;
+}
+.index .rb .box {
+position:relative;
+background-color:white;
+border:1px solid lightgray;
+padding:5px;
+width:200px;
+height:100px;
+margin-top:10px;
+margin-left:10px;
+display:inline-block;
+background-size:100% 100%;
+color:black;
+vertical-align:top;
+border-radius:10px;
+font-size:12px;
+}
+.index .rb .box span {
+position:absolute;
+bottom:5px;
+left:5px;
+}
+.index .rb {
+position:absolute;
+left:310px;
+top:5px;
+width:calc(100% - 315px);
+height:calc(100% - 10px);
+overflow-x:hidden;
+overflow-y:auto;
+text-align:center;
+}
+.tacenter {
+text-align:center;
+}
+.ccategor .cat {
+width:200px;
+height:100px;
+font-size:20px;
+text-align:center;
+line-height:50px;
+margin-right:5px;
+margin-bottom:5px;
+}
+.ccategor .ttl {
+display:inline-block;
+font-weight:bold;
+height:50px;
+line-height:50px;
+margin-top:5px;
+}
+.ccategor .add {
+position:absolute;
+top:0px;
+left:5px;
+width:50px;
+}
+.editcats {
+margin-top:20px;
+}
+.editcats .cbu {
+font-size:25px;
+width:400px;
+display:block;
+margin-left:auto;
+margin-right:auto;
+margin-top:10px;
+height:50px;
+line-height:50px;
+}
+.editcats a.cbu {
+width:398px;
+}
+.editcats .inp {
+width:400px;
+height:50px;
+font-size:20px;
+}
+.editcats h2 {
+color:red;
+}
+.editcats h3 {
+color:green;
+}
+.item {
+margin-top:20px;
+}
+.item .button {
+font-size:25px;
+}
+.item .done {
+display:inline-block;
+width:400px;
+height:50px;
+line-height:50px;
+}
+.item .itm {
+font-size:40px;
+margin-bottom:10px;
+}
+.item .count {
+display:inline-block;
+font-size:40px;
+vertical-align:middle;
+width:100px;
+}
+.item form button {
+display:inline-block;
+width:147px;
+height:50px;
+
+}
+.item .img {
+background-color:white;
+width:400px;
+height:230px;
+margin-left:auto;
+margin-right:auto;
+border:1px solid white;
+margin-bottom:13px;
+background-size:100% 100%;
+}
+.item .edit {
+position:absolute;
+display:inline-block;
+top:5px;
+left:5px;
+width:50px;
+height:50px;
+line-height:50px;
+font-size:20px;
+}
+.deleteitm button, .deleteitm  a {
+font-size:25px;
+width:400px;
+display:block;
+margin-left:auto;
+margin-right:auto;
+margin-top:10px;
+height:50px;
+line-height:50px;
+}
+.deleteitm h1 {
+color:red;
+}
+.deleteitm .yes {
+margin-bottom:100px;
+width:60px;
+height:30px;
+line-height:30px;
+font-size:10px;
+}
+.additems, .itemedit {
+margin-top:20px;
+}
+.additems .nam, .additems .fil, .itemedit .nam, .itemedit .fil {
+width:400px;
+height:50px;
+font-size:20px;
+margin-bottom:20px;
+margin-top:20px;
+}
+.additems .num, .additems .cat, .itemedit .num, .itemedit .cat {
+width:200px;
+height:50px;
+font-size:30px;
+}
+.additems .add, .itemedit .add {
+width:400px;
+height:50px;
+margin-bottom:10px;
+font-size:25px;
+}
+.additems .ttl, .itemedit .ttl {
+font-size:30px;
+}
+.additems .can, .itemedit .can {
+width:400px;
+height:50px;
+display:inline-block;
+line-height:50px;
+font-size:25px;
+}
