@@ -31,7 +31,7 @@
 <body style="margin:0px;">
     <script>
     window.print();
-    setTimeout(function() {
+    setInterval(function() {
         history.back();
     }, 1000);
     </script>
