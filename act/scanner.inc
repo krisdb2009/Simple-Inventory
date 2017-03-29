@@ -50,14 +50,20 @@ if(isset($_GET['code'])) {
         <title>CFIT Inventory</title>
         <link rel="stylesheet" type="text/css" href="static/style.css">
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <script>
+        var keys = '';
+        document.onkeydown = function(e) {
+            e = e || window.event;
+            if(e.key == 'Enter') {
+                window.location = './?act=scanner&associate&code='+keys;
+            } else {
+                keys = keys+e.key;
+            }
+        };
+        </script>
     </head>
     <body class="scanner textborder tacenter">
-        <br><br>
-        <h1>Type or scan a barcode number to associate an item.</h1>
-        <form method="get">
-            <input name="act" value="scanner" type="hidden">
-            <input name="associate" value="scanner" type="hidden">
-            <input name="code" type="text" autofocus>
-        </form>
+        <br><br><br>
+        <h1>Scan or type a barcode number then press enter to associate.</h1>
     </body>
 </html>
