@@ -65,5 +65,7 @@ if(isset($_GET['code'])) {
     <body class="scanner textborder tacenter">
         <br><br><br>
         <h1>Scan or type a barcode number then press enter to associate.</h1>
+        <br><br>
+        <a class="button" href="./">Cancel</a>
     </body>
 </html>
