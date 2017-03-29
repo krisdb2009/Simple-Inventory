@@ -170,6 +170,10 @@ left:5px;
 width:50px;
 line-height:50px;
 }
+.ccategor .more {
+right:5px;
+left:auto;
+}
 .editcats {
 margin-top:20px;
 }

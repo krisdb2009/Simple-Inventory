@@ -1,61 +1,29 @@
 <?php
 //Cedar Point//Dylan Bickerstaff//2016//CFIT Inventory
-    $reciptCharWidth = 25;
-    $reciptFontSize = 16;
-    
-    $categoryName = 'All Categories';
-    $catItems = array();
+    $title = 'All Categories';
+    $items = array();
     if(isset($_GET['cat']) && !empty($_GET['cat'])) {
         $cats = loadDB('categories');
         if(isset($cats[$_GET['cat']])) {
             $categoryName = $cats[$_GET['cat']];
             foreach(listDB('items\\'.$_GET['cat']) as $id) {
-                $catItems[$id] = loadDB('items\\'.$_GET['cat'].'\\'.$id);
-                $catItems[$id]['cat'] = $_GET['cat'];
+                $items[$id] = loadDB('items\\'.$_GET['cat'].'\\'.$id);
+                $items[$id]['cat'] = $_GET['cat'];
             }
         }
         $_SESSION['cat'] = $_GET['cat'];
     } else {
         foreach(loadDB('categories') as $cat => $name) {
             foreach(listDB('items\\'.$cat) as $id) {
-                $catItems[$id] = loadDB('items\\'.$cat.'\\'.$id);
-                $catItems[$id]['cat'] = $cat;
+                $items[$id] = loadDB('items\\'.$cat.'\\'.$id);
+                $items[$id]['cat'] = $cat;
             }
         }
         $_SESSION['cat'] = '';
     }
-    uasort($catItems, function($a, $b) {
+    uasort($items, function($a, $b) {
         return $a['name'] <=> $b['name'];
     });
+    include('inc/print.inc');
 ?>
-<body style="margin:0px;">
-    <script>
-    window.print();
-    setInterval(function() {
-        history.back();
-    }, 1000);
-    </script>
-    <img style="width:240px;height:100px;" src="static/cfit.png">
-        <pre style="display:block;overflow:hidden;width:240px;font-size:<?php echo $reciptFontSize; ?>px;font-family:Lucida Console;"><?php
-        $dash = '';
-        while(strlen($dash) < $reciptCharWidth) {
-            $dash = $dash.'-';
-        }
-        echo $dash."\n";
-        echo $categoryName."\n";
-        echo $dash."\n\n";
-        foreach($catItems as $arr) {
-            $space = '';
-            if(strlen($arr['name']) > $reciptCharWidth - 4) {
-                $arr['name'] = substr($arr['name'], 0, $reciptCharWidth - 6).'...';
-            }
-            while(strlen($arr['name']) + strlen($space) + strlen($arr['count']) < $reciptCharWidth) {
-                $space = $space.' ';
-            }
-            echo $arr['name'].$space.$arr['count']."\n\n";
-        }
-        echo "\n";
-        echo $dash;
-        echo "\n\n\n.";
-        ?></pre>
-</body>
+
