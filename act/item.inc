@@ -40,6 +40,17 @@ if(isset($_GET['cat']) && !empty($_GET['cat']) && isset($_GET['item']) && !empty
         <title>CFIT Inventory</title>
         <link rel="stylesheet" type="text/css" href="static/style.css">
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <script>
+        var keys = '';
+        document.onkeydown = function(e) {
+            e = e || window.event;
+            if(e.key == 'Enter') {
+                window.location = './?act=scanner&code='+keys;
+            } else {
+                keys = keys+e.key;
+            }
+        };
+        </script>
     </head>
     <body class="item textborder tacenter">
         <div class="wrap">
