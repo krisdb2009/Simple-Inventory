@@ -30,6 +30,17 @@
         <title>CFIT Inventory</title>
         <link rel="stylesheet" type="text/css" href="static/style.css">
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <script>
+        var keys = '';
+        document.onkeydown = function(e) {
+            e = e || window.event;
+            if(e.key == 'Enter') {
+                window.location = './?act=scanner&code='+keys;
+            } else {
+                keys = keys+e.key;
+            }
+        };
+        </script>
     </head>
     <body class="index textborder">
         <div class="cat"><?php echo $categoryName; ?></div>
@@ -68,7 +79,7 @@
             <a href="?act=ccategor" class="cbu button">Change Category</a>
             <a href="?act=additems&cat=<?php echo $_SESSION['cat']; ?>" class="cbu button">Add Items</a>
             <a href="?act=printcat&cat=<?php echo $_SESSION['cat']; ?>" class="cbu button">Print List</a>
-            <a href="?act=scanner" class="cbu button">Scanner</a>
+            <a href="?act=scanner" class="cbu button">Associate Code</a>
         </div>
     </body>
 </html>

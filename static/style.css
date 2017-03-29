@@ -53,6 +53,9 @@ font-size:24px;
 width:300px;
 height:30px;
 text-align:center;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
 }
 .index .lb {
 width:300px;
@@ -148,15 +151,16 @@ width:200px;
 height:100px;
 font-size:20px;
 text-align:center;
-line-height:50px;
 margin-right:5px;
 margin-bottom:5px;
+vertical-align:top;
+padding-top:10px;
 }
 .ccategor .ttl {
 display:inline-block;
 font-weight:bold;
 height:50px;
-line-height:50px;
+line-height:40px;
 margin-top:5px;
 }
 .ccategor .add {
@@ -164,6 +168,7 @@ position:absolute;
 top:0px;
 left:5px;
 width:50px;
+line-height:50px;
 }
 .editcats {
 margin-top:20px;
@@ -290,4 +295,35 @@ height:50px;
 display:inline-block;
 line-height:50px;
 font-size:25px;
+}
+.associate.index .rb {
+top:50px;
+height:calc(100% - 60px);
+}
+.associate.index .bl .cbu {
+display:none;
+}
+.associate.index .bl .associate.cbu.button {
+display:inline-block;
+width:302px;
+height:115px;
+font-size:30px;
+line-height:115px;
+}
+.associate.index::before {
+content: 'Pick an item to associate with this barcode.';
+position:absolute;
+font-size:40px;
+text-align:center;
+width:calc(100% - 315px);
+left:310px;
+}
+.scanner input {
+position:absolute;
+top:calc(50% - 15px);
+left:calc(50% - 250px);
+width:500px;
+height:30px;
+text-align:center;
+font-size:30px;
 }
