@@ -4,7 +4,7 @@ if(isset($_GET['code'])) {
         header('location: ./');
         exit;
     }
-    if(isset($_GET['associate'])) {
+    if(isset($_GET['associate']) && !isset($_GET['un'])) {
         header('location: ./?act=associate&code='.$_GET['code']);
         exit();
     }
@@ -18,6 +18,10 @@ if(isset($_GET['code'])) {
                             unset($item['codes'][$k]);
                             putDB($item, 'items\\'.$cat.'\\'.$itemid);
                             header('location: ./?act=scanner&code='.$_GET['code'].'&cat='.$_GET['cat'].'&item='.$_GET['item']);
+                        } elseif(isset($_GET['un'])) {
+                            unset($item['codes'][$k]);
+                            putDB($item, 'items\\'.$cat.'\\'.$itemid);
+                            header('location: ./?act=scanner&un&associate&code='.$_GET['code']);
                         } else {
                             header('location: ./?act=item&cat='.$cat.'&item='.$itemid);
                         }
@@ -27,7 +31,7 @@ if(isset($_GET['code'])) {
             }
         }
     }
-    if(isset($_GET['cat']) && isset($_GET['item'])) {
+    if(isset($_GET['cat']) && isset($_GET['item']) && !isset($_GET['un'])) {
         $item = loadDB('items\\'.$_GET['cat'].'\\'.$_GET['item']);
         if(!empty($item)) {
             if(!isset($item['codes'])) {
@@ -39,10 +43,18 @@ if(isset($_GET['code'])) {
         } else {
             header('location: ./');
         }
-    } else {
+    } elseif(isset($_GET['un'])) {
+        header('location: ./?act=more');
+    } else  {
         header('location: ./?act=associate&code='.$_GET['code']);
     }
     exit;
+}
+$un = '';
+$aun = '';
+if(isset($_GET['un'])) {
+    $un = 'un';
+    $aun = '&un';
 }
 ?>
 <html>
@@ -55,7 +67,7 @@ if(isset($_GET['code'])) {
         document.onkeydown = function(e) {
             e = e || window.event;
             if(e.key == 'Enter') {
-                window.location = './?act=scanner&associate&code='+keys;
+                window.location = './?act=scanner<?php echo $aun; ?>&associate&code='+keys;
             } else {
                 keys = keys+e.key;
             }
@@ -64,8 +76,8 @@ if(isset($_GET['code'])) {
     </head>
     <body class="scanner textborder tacenter">
         <br><br><br>
-        <h1>Scan or type a barcode number then press enter to associate.</h1>
+        <h1>Scan or type a barcode number then press enter to <?php echo $un; ?>associate.</h1>
         <br><br>
-        <a class="button" href="./">Cancel</a>
+        <a class="button" href="./?act=more">Cancel</a>
     </body>
 </html>

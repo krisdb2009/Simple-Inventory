@@ -18,7 +18,7 @@
     <body class="ccategor textborder tacenter">
         <a class="button add ttl" href="./?act=editcats">Edit</a>
         <a class="button cat ttl" href="./">Select All</a>
-        <a class="button add more ttl" href="./">More</a><br><?php
+        <a class="button add more ttl" href="./?act=more">More</a><br><?php
         $cats = loadDB('categories');
         natcasesort($cats);
         foreach($cats as $id => $name) {

@@ -2,6 +2,7 @@
 //Cedar Point//Dylan Bickerstaff//2016//CFIT Inventory
 $iName = 'Not Found';
 $iCount = 0;
+$iCat = '';
 $iID = '';
 $iImage = '';
 $cID = '';
@@ -24,6 +25,7 @@ if(isset($_GET['cat']) && !empty($_GET['cat']) && isset($_GET['item']) && !empty
             }
             putDB($item, 'items\\'.$_GET['cat'].'\\'.$_GET['item']);
         }
+        $iCat = loadDB('categories')[$_GET['cat']];
         $iName = $item['name'];
         $iCount = $item['count'];
         $iImage = $item['img'];
@@ -55,12 +57,21 @@ if(isset($_GET['cat']) && !empty($_GET['cat']) && isset($_GET['item']) && !empty
     <body class="item textborder tacenter">
         <div class="wrap">
             <a href="./?act=itemedit&cat=<?php echo $_GET['cat']; ?>&item=<?php echo $_GET['item']; ?>" class="button edit">Edit</a>
-            <div class="itm"><?php echo $iName; ?></div>
+            <div class="itm"><?php echo $iName.'<div>'.$iCat; ?></div></div>
             <div style="background-image:url('./DB/static/<?php echo $iImage; ?>');" class="img"></div>
             <form method="post">
                 <input type="hidden" name="addsub"/>
                 <button class="button textborder sub" type="submit" name="sub"><?php echo $mindel; ?></button>
-                <span class="count"><?php echo $iCount; ?></span>
+                <?php
+                $level = 'black';
+                if($iCount <= 3) {
+                    $level = 'orange';
+                }
+                if($iCount == 0) {
+                    $level = 'red';
+                }
+                ?>
+                <span style="color:<?php echo $level; ?>;" class="count"><?php echo $iCount; ?></span>
                 <button class="button textborder add" type="submit" name="add">+</button>
             </form>
             <a href="./?cat=<?php echo $_SESSION['cat']; ?>" class="button done">Done</a>

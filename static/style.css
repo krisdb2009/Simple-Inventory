@@ -89,13 +89,13 @@ font-weight:bold;
 }
 .index .lb .lbe .i {
 padding-left:5px;
-width:calc(75% - 5px);
+width:calc(81% - 5px);
 text-align:left;
 text-overflow:ellipsis;
 white-space:nowrap;
 }
 .index .lb .lbe .c {
-width:calc(25% - 6px);
+width:calc(19% - 6px);
 padding-right:5px;
 border-left:1px solid lightgray;
 text-align:right;
@@ -111,6 +111,10 @@ width:148px;
 height:55px;
 line-height:50px;
 margin-bottom:5px;
+}
+.index .cbu.cc {
+width:300px;
+height:55px;
 }
 .index .rb .box {
 position:relative;
@@ -217,6 +221,11 @@ line-height:50px;
 font-size:40px;
 margin-bottom:10px;
 }
+.item .itm div {
+font-size:25px;
+margin-bottom:20px;
+color:#5a5a5a;
+}
 .item .count {
 display:inline-block;
 font-size:40px;
@@ -293,7 +302,7 @@ font-size:25px;
 .additems .ttl, .itemedit .ttl {
 font-size:30px;
 }
-.additems .can, .itemedit .can {
+.additems .can, .itemedit .can, .more .button {
 width:400px;
 height:50px;
 display:inline-block;
@@ -327,4 +336,10 @@ display:inline-block;
 width:400px;
 height:50px;
 line-height:50px;
+}
+.more .button {
+display:block;
+margin-top:10px;
+margin-left:auto;
+margin-right:auto;
 }

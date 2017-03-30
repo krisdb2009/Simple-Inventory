@@ -76,10 +76,9 @@
         ?>
         </div>
         <div class="bl">
-            <a href="?act=ccategor" class="cbu button">Change Category</a>
+            <a href="?act=ccategor" class="cbu cc button">Change Category</a>
             <a href="?act=additems&cat=<?php echo $_SESSION['cat']; ?>" class="cbu button">Add Items</a>
             <a href="?act=printcat&cat=<?php echo $_SESSION['cat']; ?>" class="cbu button">Print List</a>
-            <a href="?act=scanner" class="cbu button">Associate Code</a>
         </div>
     </body>
 </html>
