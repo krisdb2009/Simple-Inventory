@@ -1,8 +1,10 @@
 <?php
 if(isset($_GET['code'])) {
+    $sessionKeep = $_SESSION['cat'];
     ob_start();
     include('index.inc');
     $ob = ob_get_clean();
+    $_SESSION['cat'] = $sessionKeep;
     $find = array(
     'act=item',
     '<body class="index textborder">',

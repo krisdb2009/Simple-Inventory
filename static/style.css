@@ -43,7 +43,7 @@ box-shadow:inset 0px 0px 10px gray;
 background:linear-gradient(to bottom, #c1c1c1 0%,#e0e0e0 100%);
 }
 .textborder {
-text-shadow:1px 1px 0px white, 1px -1px 0px white, -1px -1px 0px white, -1px 1px 0px white;
+text-shadow:1px 1px 0px white, 1px -1px 0px white, -1px -1px 0px white, -1px 1px 0px white, 0px 1px 0px white, 0px -1px 0px white, -1px 0px 0px white, -1px 0px 0px white;
 }
 .index .cat {
 position:absolute;
@@ -65,7 +65,7 @@ left:5px;
 top:30px;
 overflow-y:auto;
 overflow-x:hidden;
-border:1px solid lightgray;
+border:1px solid #bfbfbf;
 }
 .index .lb::-webkit-scrollbar { 
 width: 0 !important
@@ -75,12 +75,12 @@ display:inline-block;
 height:30px;
 line-height:30px;
 font-size:16px;
-border-bottom:1px solid lightgray;
+border-bottom:1px solid #bfbfbf;
 overflow:hidden;
 color:black;
 }
 .index .lb a:active * {
-background-color:lightgray;
+background-color:#bfbfbf;
 color:white !important;
 text-shadow:none;
 }
@@ -97,7 +97,7 @@ white-space:nowrap;
 .index .lb .lbe .c {
 width:calc(19% - 6px);
 padding-right:5px;
-border-left:1px solid lightgray;
+border-left:1px solid #bfbfbf;
 text-align:right;
 }
 .index .bl {
@@ -119,7 +119,7 @@ height:55px;
 .index .rb .box {
 position:relative;
 background-color:white;
-border:1px solid lightgray;
+border:1px solid #bfbfbf;
 padding:5px;
 width:200px;
 height:100px;
@@ -130,7 +130,10 @@ background-size:100% 100%;
 color:black;
 vertical-align:top;
 border-radius:10px;
-font-size:12px;
+font-size:14px;
+}
+.index .rb .box:active {
+filter:invert();
 }
 .index .rb .box span {
 position:absolute;
@@ -244,9 +247,10 @@ width:400px;
 height:230px;
 margin-left:auto;
 margin-right:auto;
-border:1px solid white;
+border:1px solid #bfbfbf;
 margin-bottom:13px;
 background-size:100% 100%;
+border-radius:10px;
 }
 .item .edit {
 position:absolute;
