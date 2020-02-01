@@ -1,349 +1,435 @@
 /* //Cedar Point//Dylan Bickerstaff//2016//CFIT Inventory */
 * {
-font-family:arial;
--webkit-user-select:none;
--khtml-user-select:none;
--moz-user-select:none;
--o-user-select:none;
--ms-user-select:none;
-user-select:none;
-cursor:default;
-outline:none;
+    font-family: arial;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+    outline: none;
 }
-body {
-background:url('bg.png');
-background-color:#eee;
-margin:0;
-}
-body::after {
-content:"";
-background:url('cfit.png');
-background-size:100% 100%;
-width:100px;
-height:50px;
-bottom:5px;
-right:5px;
-position:absolute;
-z-index:5;
-opacity:.4;
-pointer-events:none;
-}
-.button {
-display:inline-block;
-border:none;
-text-decoration:none;
-text-align:center;
-box-shadow:inset 0px 0px 10px #aaaaaa;
-background:linear-gradient(to bottom, #ffffff 14%,#efefef 34%,#dddddd 100%);
-color:black;
-border-radius:10px;
-}
-.button:active {
-box-shadow:inset 0px 0px 10px gray;
-background:linear-gradient(to bottom, #c1c1c1 0%,#e0e0e0 100%);
-}
-.textborder {
-text-shadow:1px 1px 0px white, 1px -1px 0px white, -1px -1px 0px white, -1px 1px 0px white, 0px 1px 0px white, 0px -1px 0px white, -1px 0px 0px white, -1px 0px 0px white;
-}
-.index .cat {
-position:absolute;
-top:0px;
-left:0px;
-font-size:24px;
-width:300px;
-height:30px;
-text-align:center;
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
-}
-.index .lb {
-width:300px;
-height:calc(100% - 160px);
-position:absolute;
-left:5px;
-top:30px;
-overflow-y:auto;
-overflow-x:hidden;
-border:1px solid #bfbfbf;
-}
-.index .lb::-webkit-scrollbar { 
-width: 0 !important
-}
-.index .lb .lbe .i, .index .lb .lbe .c {
-display:inline-block;
-height:30px;
-line-height:30px;
-font-size:16px;
-border-bottom:1px solid #bfbfbf;
-overflow:hidden;
-color:black;
-}
-.index .lb a:active * {
-background-color:#bfbfbf;
-color:white !important;
-text-shadow:none;
-}
-.index .lb .lbe.ttl {
-font-weight:bold;
-}
-.index .lb .lbe .i {
-padding-left:5px;
-width:calc(81% - 5px);
-text-align:left;
-text-overflow:ellipsis;
-white-space:nowrap;
-}
-.index .lb .lbe .c {
-width:calc(19% - 6px);
-padding-right:5px;
-border-left:1px solid #bfbfbf;
-text-align:right;
-}
-.index .bl {
-position:absolute;
-bottom:0px;
-left:5px;
-width:302px;
-}
-.index .cbu {
-width:148px;
-height:55px;
-line-height:50px;
-margin-bottom:5px;
-}
-.index .cbu.cc {
-width:300px;
-height:55px;
-}
-.index .rb .box {
-position:relative;
-background-color:white;
-border:1px solid #bfbfbf;
-padding:5px;
-width:200px;
-height:100px;
-margin-top:10px;
-margin-left:10px;
-display:inline-block;
-background-size:100% 100%;
-color:black;
-vertical-align:top;
-border-radius:10px;
-font-size:14px;
-}
-.index .rb .box:active {
-filter:invert();
-}
-.index .rb .box span {
-position:absolute;
-bottom:5px;
-left:5px;
-}
-.index .rb {
-position:absolute;
-left:310px;
-top:5px;
-width:calc(100% - 315px);
-height:calc(100% - 10px);
-overflow-x:hidden;
-overflow-y:auto;
-text-align:center;
-}
-.tacenter {
-text-align:center;
-}
-.ccategor .cat {
-width:200px;
-height:100px;
-font-size:20px;
-text-align:center;
-margin-right:5px;
-margin-bottom:5px;
-vertical-align:top;
-padding-top:10px;
-}
-.ccategor .ttl {
-display:inline-block;
-font-weight:bold;
-height:50px;
-line-height:40px;
-margin-top:5px;
-}
-.ccategor .add {
-position:absolute;
-top:0px;
-left:5px;
-width:50px;
-line-height:50px;
-}
-.ccategor .more {
-right:5px;
-left:auto;
-}
-.editcats {
-margin-top:20px;
-}
-.editcats .cbu {
-font-size:25px;
-width:400px;
-display:block;
-margin-left:auto;
-margin-right:auto;
-margin-top:10px;
-height:50px;
-line-height:50px;
-}
-.editcats a.cbu {
-width:398px;
-}
-.editcats .inp {
-width:400px;
-height:50px;
-font-size:20px;
-}
-.editcats h2 {
-color:red;
-}
-.editcats h3 {
-color:green;
-}
-.item {
-margin-top:20px;
-}
-.item .button {
-font-size:25px;
-}
-.item .done {
-display:inline-block;
-width:400px;
-height:50px;
-line-height:50px;
-}
-.item .itm {
-font-size:40px;
-margin-bottom:10px;
-}
-.item .itm div {
-font-size:25px;
-margin-bottom:20px;
-color:#5a5a5a;
-}
-.item .count {
-display:inline-block;
-font-size:40px;
-vertical-align:middle;
-width:100px;
-}
-.item form button {
-display:inline-block;
-width:147px;
-height:50px;
 
+body {
+    background: url('bg.png');
+    background-color: #eee;
+    margin: 0;
 }
+
+body::after {
+    content: "";
+    background: url('cfit.png');
+    background-size: 100% 100%;
+    width: 100px;
+    height: 50px;
+    bottom: 5px;
+    right: 5px;
+    position: absolute;
+    z-index: 5;
+    opacity: .4;
+    pointer-events: none;
+}
+
+.button {
+    display: inline-block;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: inset 0px 0px 10px #aaaaaa;
+    background: linear-gradient(to bottom, #ffffff 14%,#efefef 34%,#dddddd 100%);
+    color: black;
+    border-radius: 10px;
+}
+
+.button:active {
+    box-shadow: inset 0px 0px 10px gray;
+    background: linear-gradient(to bottom, #c1c1c1 0%,#e0e0e0 100%);
+}
+
+.textborder {
+    text-shadow: 1px 1px 0px white, 1px -1px 0px white, -1px -1px 0px white, -1px 1px 0px white, 0px 1px 0px white, 0px -1px 0px white, -1px 0px 0px white, -1px 0px 0px white;
+}
+
+.index .cat {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 24px;
+    width: 300px;
+    height: 30px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.index .lb {
+    width: 300px;
+    height: calc(100% - 160px);
+    position: absolute;
+    left: 5px;
+    top: 30px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid #bfbfbf;
+}
+
+.index .lb::-webkit-scrollbar {
+    width: 0 !important
+}
+
+.index .lb .lbe .i, .index .lb .lbe .c {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    border-bottom: 1px solid #bfbfbf;
+    overflow: hidden;
+    color: black;
+}
+
+.index .lb a:active * {
+    background-color: #bfbfbf;
+    color: white !important;
+    text-shadow: none;
+}
+
+.index .lb .lbe.ttl {
+    font-weight: bold;
+}
+
+.index .lb .lbe .i {
+    padding-left: 5px;
+    width: calc(81% - 5px);
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.index .lb .lbe .c {
+    width: calc(19% - 6px);
+    padding-right: 5px;
+    border-left: 1px solid #bfbfbf;
+    text-align: right;
+}
+
+.index .bl {
+    position: absolute;
+    bottom: 0px;
+    left: 5px;
+    width: 302px;
+}
+
+.index .cbu {
+    width: 97px;
+    height: 55px;
+    line-height: 55px;
+    margin-bottom: 5px;
+}
+
+.index .cbu.cc {
+    width: 300px;
+    height: 55px;
+}
+
+.index .rb .box {
+    position: relative;
+    background-color: white;
+    border: 1px solid #bfbfbf;
+    padding: 5px;
+    width: 200px;
+    height: 100px;
+    margin-top: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    background-size: 100% 100%;
+    color: black;
+    vertical-align: top;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.index .rb .box:active {
+    filter: invert();
+}
+
+.index .rb .box span {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+
+.index .rb {
+    position: absolute;
+    left: 310px;
+    top: 5px;
+    width: calc(100% - 315px);
+    height: calc(100% - 10px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.tacenter {
+    text-align: center;
+}
+
+.ccategor .cat {
+    width: 200px;
+    height: 100px;
+    font-size: 20px;
+    text-align: center;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    vertical-align: top;
+    padding-top: 10px;
+}
+
+.ccategor .ttl {
+    display: inline-block;
+    font-weight: bold;
+    height: 50px;
+    line-height: 40px;
+    margin-top: 5px;
+}
+
+.ccategor .add {
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    width: 50px;
+    line-height: 50px;
+}
+
+.ccategor .more {
+    right: 5px;
+    left: auto;
+}
+
+.editcats {
+    margin-top: 20px;
+}
+
+.editcats .cbu {
+    font-size: 25px;
+    width: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.editcats a.cbu {
+    width: 398px;
+}
+
+.editcats .inp {
+    width: 400px;
+    height: 50px;
+    font-size: 20px;
+}
+
+.editcats h2 {
+    color: red;
+}
+
+.editcats h3 {
+    color: green;
+}
+
+.item {
+    margin-top: 20px;
+}
+
+.item .button {
+    font-size: 25px;
+}
+
+.item .done {
+    display: inline-block;
+    width: 400px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.item .itm {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.item .itm div {
+    font-size: 25px;
+    margin-bottom: 20px;
+    color: #5a5a5a;
+}
+
+.item .count {
+    display: inline-block;
+    font-size: 40px;
+    vertical-align: middle;
+    width: 100px;
+}
+
+.item form button {
+    display: inline-block;
+    width: 147px;
+    height: 50px;
+}
+
 .item .img {
-background-color:white;
-width:400px;
-height:230px;
-margin-left:auto;
-margin-right:auto;
-border:1px solid #bfbfbf;
-margin-bottom:13px;
-background-size:100% 100%;
-border-radius:10px;
+    background-color: white;
+    width: 400px;
+    height: 230px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #bfbfbf;
+    margin-bottom: 13px;
+    background-size: 100% 100%;
+    border-radius: 10px;
 }
+
 .item .edit {
-position:absolute;
-display:inline-block;
-top:5px;
-left:5px;
-width:50px;
-height:50px;
-line-height:50px;
-font-size:20px;
+    position: absolute;
+    display: inline-block;
+    top: 5px;
+    left: 5px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
 }
-.deleteitm button, .deleteitm  a {
-font-size:25px;
-width:400px;
-display:block;
-margin-left:auto;
-margin-right:auto;
-margin-top:10px;
-height:50px;
-line-height:50px;
+
+.deleteitm button, .deleteitm a {
+    font-size: 25px;
+    width: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    height: 50px;
+    line-height: 50px;
 }
+
 .deleteitm h1 {
-color:red;
+    color: red;
 }
+
 .deleteitm .yes {
-margin-bottom:100px;
-width:60px;
-height:30px;
-line-height:30px;
-font-size:10px;
+    margin-bottom: 100px;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 10px;
 }
+
 .additems, .itemedit {
-margin-top:20px;
+    margin-top: 20px;
 }
+
 .additems .nam, .additems .fil, .itemedit .nam, .itemedit .fil {
-width:400px;
-height:50px;
-font-size:20px;
-margin-bottom:20px;
-margin-top:20px;
+    width: 400px;
+    height: 50px;
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
+
 .additems .num, .additems .cat, .itemedit .num, .itemedit .cat {
-width:200px;
-height:50px;
-font-size:30px;
+    width: 200px;
+    height: 50px;
+    font-size: 30px;
 }
+
 .additems .add, .itemedit .add {
-width:400px;
-height:50px;
-margin-bottom:10px;
-font-size:25px;
+    width: 400px;
+    height: 50px;
+    margin-bottom: 10px;
+    font-size: 25px;
 }
+
 .additems .ttl, .itemedit .ttl {
-font-size:30px;
+    font-size: 30px;
 }
+
 .additems .can, .itemedit .can, .more .button {
-width:400px;
-height:50px;
-display:inline-block;
-line-height:50px;
-font-size:25px;
+    width: 400px;
+    height: 50px;
+    display: inline-block;
+    line-height: 50px;
+    font-size: 25px;
 }
+
 .associate.index .rb {
-top:50px;
-height:calc(100% - 60px);
+    top: 50px;
+    height: calc(100% - 60px);
 }
+
 .associate.index .bl .cbu {
-display:none;
+    display: none;
 }
+
 .associate.index .bl .associate.cbu.button {
-display:inline-block;
-width:302px;
-height:115px;
-font-size:30px;
-line-height:115px;
+    display: inline-block;
+    width: 302px;
+    height: 115px;
+    font-size: 30px;
+    line-height: 115px;
 }
+
 .associate.index::before {
-content: 'Pick an item to associate with this barcode.';
-position:absolute;
-font-size:40px;
-text-align:center;
-width:calc(100% - 315px);
-left:310px;
+    content: 'Pick an item to associate with this barcode.';
+    position: absolute;
+    font-size: 40px;
+    text-align: center;
+    width: calc(100% - 315px);
+    left: 310px;
 }
+
 .scanner .button {
-display:inline-block;
-width:400px;
-height:50px;
-line-height:50px;
+    display: inline-block;
+    width: 400px;
+    height: 50px;
+    line-height: 50px;
 }
+
 .more .button {
-display:block;
-margin-top:10px;
-margin-left:auto;
-margin-right:auto;
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#barcode {
+    position:absolute;
+    width:300px;
+    height:280px;
+    left:calc(50% - 150px);
+    top:calc(50% - 150px);
+    background-color:whitesmoke;
+    z-index:100;
+    box-shadow:8px 8px 0px rgba(0,0,0,0.4);
+    border:1px solid black;
+    display:none;
+    padding:10px;
+}
+#barcode.visible {
+    display:inline-block;
+}
+#barcode .button {
+    padding:5px 10px 5px 10px;
+    margin-bottom:10px;
+    float:right;
+}
+#barcode > div > span {
+    margin:5px 0px 0px 15px;
+    display:inline-block;
+}
+#sourceSelect {
+    width:150px;
+    float:right;
+}
+#camera {
+    margin:15px;
 }

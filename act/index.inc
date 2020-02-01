@@ -27,9 +27,10 @@
 ?>
 <html>
     <head>
-        <title>CFIT Inventory</title>
+        <title>Simple Inventory</title>
         <link rel="stylesheet" type="text/css" href="static/style.css">
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+		<script src="./static/zxing.qrcodereader.min.js"></script>
         <script>
         var keys = '';
         document.onkeydown = function(e) {
@@ -41,8 +42,48 @@
             }
         };
         </script>
+		<script>
+			window.addEventListener('load', function() {
+				const codeReader = new ZXing.BrowserQRCodeReader();
+				codeReader.getVideoInputDevices().then((videoInputDevices) => {
+					const sourceSelect = document.getElementById('sourceSelect');
+					const firstDeviceId = videoInputDevices[0].deviceId;
+					if (videoInputDevices.length > 1) {
+						videoInputDevices.forEach((element)=>{
+							const sourceOption = document.createElement('option');
+							sourceOption.text = element.label;
+							sourceOption.value = element.deviceId;
+							sourceSelect.appendChild(sourceOption);
+						});
+						const sourceSelectPanel = document.getElementById('sourceSelectPanel');
+						sourceSelectPanel.style.display = 'block';
+					}
+					document.getElementById('scanbtn').addEventListener('click', () => {
+						document.getElementById('barcode').classList.add('visible');
+						codeReader.decodeFromInputVideoDevice(firstDeviceId, 'video').then((result) => {
+							window.location = './?act=scanner&code='+result.text;
+						});
+					});
+					document.getElementById('resetButton').addEventListener('click', ()=>{
+						codeReader.reset();
+						document.getElementById('barcode').classList.remove('visible');
+					});
+				});
+			});
+		</script>
     </head>
     <body class="index textborder">
+		<div id="barcode">
+			<div>
+				<span>Barcode Scanner</span>
+				<a class="button" id="resetButton">X</a>
+			</div>
+			<video id="video" width="300" height="200"></video>
+			<div id="camera">
+				<label>Camera:</label>
+				<select id="sourceSelect" style="max-width:400px"></select>
+			</div>
+		</div>
         <div class="cat"><?php echo $categoryName; ?></div>
         <div class="lb">
             <div class="lbe ttl">
@@ -79,6 +120,7 @@
             <a href="?act=ccategor" class="cbu cc button">Change Category</a>
             <a href="?act=additems&cat=<?php echo $_SESSION['cat']; ?>" class="cbu button">Add Items</a>
             <a href="?act=printcat&cat=<?php echo $_SESSION['cat']; ?>" class="cbu button">Print List</a>
+			<a id="scanbtn" class="cbu button">Scan</a>
         </div>
     </body>
 </html>
