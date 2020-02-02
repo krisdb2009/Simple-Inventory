@@ -44,23 +44,37 @@
         </script>
 		<script>
 			window.addEventListener('load', function() {
-				const codeReader = new ZXing.BrowserQRCodeReader();
+				var selectedDeviceId = localStorage.getItem('DefaultScanCamID');
+				const codeReader = new ZXing.BrowserMultiFormatReader();
 				codeReader.getVideoInputDevices().then((videoInputDevices) => {
 					const sourceSelect = document.getElementById('sourceSelect');
-					const firstDeviceId = videoInputDevices[0].deviceId;
+					if(selectedDeviceId == null) {
+						selectedDeviceId = videoInputDevices[0].deviceId;
+					} else {
+						console.log(sourceSelect);
+						/*for(var index = 0; index >= sourceSelect.options.length; index++) {
+							console.log(index);
+						}*/
+					}
 					if (videoInputDevices.length > 1) {
-						videoInputDevices.forEach((element)=>{
+						videoInputDevices.forEach((element) => {
 							const sourceOption = document.createElement('option');
 							sourceOption.text = element.label;
 							sourceOption.value = element.deviceId;
 							sourceSelect.appendChild(sourceOption);
 						});
-						const sourceSelectPanel = document.getElementById('sourceSelectPanel');
-						sourceSelectPanel.style.display = 'block';
 					}
+					sourceSelect.onchange = function() {
+						codeReader.reset();
+						selectedDeviceId = sourceSelect.value;
+						codeReader.decodeFromInputVideoDevice(selectedDeviceId, 'video').then((result) => {
+							window.location = './?act=scanner&code='+result.text;
+						});
+						localStorage.setItem('DefaultScanCamID', selectedDeviceId);
+					};
 					document.getElementById('scanbtn').addEventListener('click', () => {
 						document.getElementById('barcode').classList.add('visible');
-						codeReader.decodeFromInputVideoDevice(firstDeviceId, 'video').then((result) => {
+						codeReader.decodeFromInputVideoDevice(selectedDeviceId, 'video').then((result) => {
 							window.location = './?act=scanner&code='+result.text;
 						});
 					});
